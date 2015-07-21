@@ -1,4 +1,4 @@
-package gnu_finance;
+package org.gnuport.gnufinance;
 
 
 public class GnuFinance {
