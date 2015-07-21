@@ -1,0 +1,10 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.gnuport</groupId>
+	<artifactId>super-pom</artifactId>
+	<version>1.0-RELEASE</version>
+	<packaging>pom</packaging>
+	<name>GNU Port Super POM</name>
+
+</project>
