@@ -1,7 +1,16 @@
+#Drop all the refering tables first
+DROP TABLE IF EXISTS gnufinance.transactions_tags;
+DROP TABLE IF EXISTS gnufinance.users_accounts;
+
+#Drop other tables
+DROP TABLE IF EXISTS gnufinance.splits;
+DROP TABLE IF EXISTS gnufinance.transactions;
 DROP TABLE IF EXISTS gnufinance.users;
+DROP TABLE IF EXISTS gnufinance.tags;
+DROP TABLE IF EXISTS gnufinance.accounts;
 
 CREATE TABLE gnufinance.users (
-       rid INT PRIMARY KEY,
+       rid INT NOT NULL UNIQUE,
        first_name VARCHAR(25),
        last_name VARCHAR(25),
        date_of_birth DATE,
@@ -12,12 +21,56 @@ CREATE TABLE gnufinance.users (
        city VARCHAR(25),
        region VARCHAR(25),
        country VARCHAR(25),
-       data_directory VARCHAR(256)
-   );
+       data_directory VARCHAR(256),
+       PRIMARY KEY (rid)
+);
 
-INSERT INTO gnufinance.users VALUES (1, "Suresh", "Sarda", "1992-10-03", "sureshssarda@outlook.com", "20/J-2, Aditya Nakoda Enclave", "Sarita Nagri", "Sinhgad Road", "Pune", "Maharashtra", "India", "");
-INSERT INTO gnufinance.users VALUES (2, "Paresh", "Sarda", "1988-01-24", "pareshssarda@gmail.com", "20/J-2, Aditya Nakoda Enclave", "Sarita Nagri", "Sinhgad Road", "Pune", "Maharashtra", "India", "");
-INSERT INTO gnufinance.users VALUES (3, "Neha", "Ellath", "1992-09-27", "nehabellath@gmail.com", "20/J-2, Aditya Nakoda Enclave", "Dhayri Fata", "Sinhgad Road", "Pune", "Maharashtra", "India", "");
-INSERT INTO gnufinance.users VALUES (4, "Sarita", "Jakhete", "1986-02-26", "saritaj@gmail.com", "20/J-2, Aditya Nakoda Enclave", "Sarita Nagri", "Sinhgad Road", "Aurangabad", "Maharashtra", "India", "");
-INSERT INTO gnufinance.users VALUES (5, "Bhakti", "Sarda", "1989-02-19", "sonubj@gmail.com", "20/J-2, Aditya Nakoda Enclave", "Sarita Nagri", "Sinhgad Road", "Pune", "Maharashtra", "India", "");
-INSERT INTO gnufinance.users VALUES (6, "Shekhar", "Dahore", "1993-01-04", "sdahore@gmail.com", "20/J-2, Aditya Nakoda Enclave", "Sarita Nagri", "Sinhgad Road", "Banglore", "Karnataka", "India", "");
+CREATE TABLE gnufinance.accounts (
+	rid INT NOT NULL,
+	parent_id INT,
+	balance INT,
+	name VARCHAR(64) NOT NULL,
+	PRIMARY KEY (rid),
+	FOREIGN KEY (parent_id) REFERENCES gnufinance.accounts(rid)
+);
+
+CREATE TABLE gnufinance.tags (
+	rid INT NOT NULL UNIQUE,
+	name VARCHAR(64),
+	PRIMARY KEY(rid)
+);
+
+CREATE TABLE gnufinance.transactions (
+	rid INT NOT NULL UNIQUE,
+	user_id INT NOT NULL,
+	description VARCHAR(256),
+	amount INT NOT NULL,
+	date DATE NOT NULL,
+	PRIMARY KEY (rid),
+	FOREIGN KEY (user_id) REFERENCES gnufinance.users(rid) ON DELETE CASCADE
+);
+  
+CREATE TABLE gnufinance.splits (
+	rid INT NOT NULL UNIQUE,
+	transaction_id INT NOT NULL,
+	account_id INT NOT NULL,
+	description VARCHAR(256),
+	amount INT NOT NULL,
+	PRIMARY KEY (rid),
+	FOREIGN KEY (transaction_id) REFERENCES gnufinance.transactions(rid) ON DELETE CASCADE,
+	FOREIGN KEY (account_id) REFERENCES gnufinance.accounts(rid)
+);
+
+CREATE TABLE gnufinance.transactions_tags (
+	transaction_id INT NOT NULL,
+	tag_id	INT NOT NULL,
+	FOREIGN KEY (transaction_id) REFERENCES gnufinance.transactions(rid),
+	FOREIGN KEY (tag_id) REFERENCES gnufinance.tags(rid)
+);
+
+CREATE TABLE gnufinance.users_accounts (
+	user_id INT NOT NULL,
+	account_id INT NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES gnufinance.users(rid),
+	FOREIGN KEY (account_id) REFERENCES gnufinance.accounts(rid)
+);
