@@ -8,6 +8,7 @@ public class TransactionBean {
 	long amount;
 	Date date;
 	
-	SplitBean[] splits;
-	TagBean[] tags;
+	SplitBean[] splits;	//transactions can have multiple splits
+	TagBean[] tags; 	//transactions can have multiple tags
+	UserBean belongsToUser;		//every transaction belongs to a User
 }

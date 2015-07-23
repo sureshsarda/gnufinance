@@ -16,6 +16,10 @@ public class UserBean {
 	String country;
 	
 	String dataDirectory;
+	
+	//has-many accounts and transactions
+	AccountBean[] accounts;
+	TransactionBean[] transactions;
 
 	public long getRid() {
 		return rid;

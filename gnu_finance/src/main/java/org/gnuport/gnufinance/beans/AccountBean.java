@@ -6,5 +6,10 @@ public class AccountBean {
 	long balance;
 	String name;
 	
-	AccountBean[] children;
+	
+	AccountBean[] children;	//has many child accounts
+	
+	//NOT IMPORTANT
+	UserBean[] users;		//user has accounts
+	SplitBean[] splits;		//has many splits
 }
