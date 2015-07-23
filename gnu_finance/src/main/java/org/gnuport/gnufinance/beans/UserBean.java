@@ -2,111 +2,134 @@ package org.gnuport.gnufinance.beans;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Suresh Sarda
+ *
+ */
+
 public class UserBean {
-	long rid;
-	String firstName;
-	String lastName;
-	Date dob;
-	
-	String address;
-	String locality;
-	String streetName;
-	String city;
-	String state;
-	String country;
-	
-	String dataDirectory;
-	
-	//has-many accounts and transactions
-	AccountBean[] accounts;
-	TransactionBean[] transactions;
+    long rid;
+    String firstName;
+    String lastName;
+    Date dob;
 
-	public long getRid() {
-		return rid;
-	}
+    String address;
+    String locality;
+    String streetName;
+    String city;
+    String state;
+    String country;
 
-	public void setRid(long rid) {
-		this.rid = rid;
-	}
+    String dataDirectory;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    // has-many accounts and transactions
+    AccountBean[] accounts;
+    TransactionBean[] transactions;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public long getRid() {
+        return rid;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setRid(long rid) {
+        this.rid = rid;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public Date getDob() {
-		return dob;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public Date getDob() {
+        return dob;
+    }
 
-	public String getLocality() {
-		return locality;
-	}
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
 
-	public void setLocality(String locality) {
-		this.locality = locality;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getStreetName() {
-		return streetName;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setStreetName(String streetName) {
-		this.streetName = streetName;
-	}
+    public String getLocality() {
+        return locality;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getStreetName() {
+        return streetName;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public String getDataDirectory() {
-		return dataDirectory;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public void setDataDirectory(String dataDirectory) {
-		this.dataDirectory = dataDirectory;
-	}
-	
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getDataDirectory() {
+        return dataDirectory;
+    }
+
+    public void setDataDirectory(String dataDirectory) {
+        this.dataDirectory = dataDirectory;
+    }
+
+    public AccountBean[] getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(AccountBean[] accounts) {
+        this.accounts = accounts;
+    }
+
+    public TransactionBean[] getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(TransactionBean[] transactions) {
+        this.transactions = transactions;
+    }
+
+
 }
