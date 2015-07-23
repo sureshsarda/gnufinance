@@ -28,8 +28,8 @@ CREATE TABLE gnufinance.users (
 CREATE TABLE gnufinance.accounts (
 	rid INT NOT NULL,
 	parent_id INT,
-	balance INT,
 	name VARCHAR(64) NOT NULL,
+	balance INT,
 	PRIMARY KEY (rid),
 	FOREIGN KEY (parent_id) REFERENCES gnufinance.accounts(rid)
 );
