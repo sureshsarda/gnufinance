@@ -1,5 +1,6 @@
 package org.gnuport.gnufinance;
 
+import org.gnuport.gnufinance.modules.dashboard.views.RootFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,8 @@ public class GnuFinance {
 	}
 
 	public GnuFinance() {
-		logger.debug("Log");
+		RootFrame frame = new RootFrame();
+		logger.debug("RootFrame initiated.");
 
 	}
 }
