@@ -2,6 +2,8 @@ package org.gnuport.gnufinance;
 
 import java.awt.EventQueue;
 
+import javax.swing.UIManager;
+
 import org.gnuport.gnufinance.common.EventBus;
 import org.gnuport.gnufinance.navigator.Navigator;
 import org.gnuport.gnufinance.navigator.RootFrame;
@@ -23,6 +25,8 @@ public class GnuFinance {
 
 
     public GnuFinance() {
+        UIManager manager = new UIManager();
+        
         
         EventQueue.invokeLater(new Runnable() {
             @Override

@@ -4,6 +4,7 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import org.gnuport.gnufinance.modules.transaction.controllers.LedgerController;
 import org.gnuport.gnufinance.modules.transaction.views.LedgerView;
 
 /**
@@ -29,8 +30,9 @@ public class RootFrame  {
         navigator = new Navigator(this);
         
         /*Navigate to first view*/
+        LedgerView ledger = new LedgerView(LedgerController.getInstance());
         
-        this.getNavigator().navigate(new LedgerView());
+        this.getNavigator().navigate(ledger);
 //        GnuFinance.getGlobalEventBus().publish(this, new NewTransactionEvent());
     }
     

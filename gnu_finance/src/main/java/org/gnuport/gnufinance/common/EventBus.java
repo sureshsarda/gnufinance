@@ -34,7 +34,7 @@ public class EventBus {
                 String methodName = null;
                 try {
                     methodName = getMethodName(event);
-                    method = listner.getClass().getMethod(methodName, NewTransactionEvent.class);
+                    method = listner.getClass().getMethod(methodName, event.getClass());
                     method.invoke(listner, event);
                 } catch (NoSuchMethodException | InvocationTargetException | SecurityException | IllegalAccessException e) {
                     logger.info("Exception while calling method of subscriber");
@@ -47,19 +47,21 @@ public class EventBus {
         }
     }
 
-    public <T> void subscribe(EventBusListener listner, String e) {
-        if (subscribers.containsKey(e)) {
-            subscribers.get(e).add(listner);
+    public <T> void subscribe(EventBusListener listner, Class<T>  c) {
+        String className = c.getName();
+        if (subscribers.containsKey(className)) {
+            subscribers.get(className).add(listner);
         } else {
             List<EventBusListener> list = new ArrayList<EventBusListener>();
             list.add(listner);
-            subscribers.put(e, list);
+            subscribers.put(className, list);
         }
     }
 
-    public void unsuscribe(EventBusListener listner, String e) {
-        if (subscribers.containsKey(e)) {
-            subscribers.get(e).remove(listner);
+    public <T> void unsuscribe(EventBusListener listner, Class<T> c) {
+        String className = c.getName();
+        if (subscribers.containsKey(className)) {
+            subscribers.get(className).remove(listner);
         }
     }
 

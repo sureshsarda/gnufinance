@@ -10,7 +10,7 @@ public class Navigator {
         this.root = root;
     }
     
-    public void navigate(AbstractView<?> view) {
+    public void navigate(AbstractView view) {
         root.setContentPane(view);
     }
     

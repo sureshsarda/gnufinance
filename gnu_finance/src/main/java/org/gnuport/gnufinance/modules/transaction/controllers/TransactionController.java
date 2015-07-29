@@ -1,13 +1,9 @@
 package org.gnuport.gnufinance.modules.transaction.controllers;
 
-import java.util.List;
-
 import org.gnuport.gnufinance.GnuFinance;
-import org.gnuport.gnufinance.beans.TransactionBean;
 import org.gnuport.gnufinance.common.AbstractController;
-import org.gnuport.gnufinance.modules.transaction.events.NewTransactionEvent;
-import org.gnuport.gnufinance.modules.transaction.views.AddNewTransactionView;
-import org.gnuport.gnufinance.services.jdbc.TransactionService;
+import org.gnuport.gnufinance.common.AbstractView;
+import org.gnuport.gnufinance.modules.transaction.events.LedgerViewLoadedEvent;
 
 /**
  *
@@ -18,12 +14,16 @@ import org.gnuport.gnufinance.services.jdbc.TransactionService;
 
 public class TransactionController extends AbstractController {
     public TransactionController() {
-        GnuFinance.getInstance().getGlobalEventBus().subscribe(this, NewTransactionEvent.class.getName());
+        GnuFinance.getInstance().getGlobalEventBus().subscribe(this, LedgerViewLoadedEvent.class);
     }
     
     
-    @Override
-    protected void preViewLoad() {
-        
+    public void onLedgerViewLoadedEvent(LedgerViewLoadedEvent event) {
+        System.out.println("Load Complete");
+    }
+
+    private static TransactionController instance = new TransactionController();
+    public static synchronized TransactionController getInstance() {
+        return instance;
     }
 }

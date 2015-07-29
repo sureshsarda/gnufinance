@@ -6,18 +6,18 @@ import javax.swing.JPanel;
 import org.gnuport.gnufinance.common.AbstractView;
 import org.gnuport.gnufinance.modules.transaction.controllers.TransactionController;
 
-public class AddNewTransactionView extends AbstractView<TransactionController> {
-    
+public class AddNewTransactionView extends AbstractView {
+
     public static final String name = "new-transaction-view";
-    
+
     public AddNewTransactionView() {
         super();
-        
+
         JLabel label = new JLabel("Test");
         this.add(label);
-        
+
     }
-    
+
     @Override
     public String getName() {
         return name;
