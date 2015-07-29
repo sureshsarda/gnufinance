@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.log4j.lf5.util.DateFormatManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * NamedPreparedStatement helps to create SQL statements using symbols instead
@@ -19,6 +21,8 @@ public class NamedPreparedStatement {
 
 	String query;
 	Connection connection;
+	
+	private Logger logger = LoggerFactory.getLogger(NamedPreparedStatement.class);
 
 	public NamedPreparedStatement(Connection connection, String query) {
 		this.connection = connection;
@@ -75,6 +79,15 @@ public class NamedPreparedStatement {
 	public int executeUpdate() throws SQLException {
 		PreparedStatement ps = connection.prepareStatement(query);
 		return ps.executeUpdate();
+	}
+	
+	public void destroy() {
+	    try {
+            connection.close();
+        } catch (SQLException e) {
+            logger.error("Error while closing JDBC Connection");
+            logger.debug("Exception", e);
+        }
 	}
 
 }

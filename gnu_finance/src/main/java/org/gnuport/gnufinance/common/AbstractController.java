@@ -9,7 +9,7 @@ package org.gnuport.gnufinance.common;
  * @author Suresh Sarda (sureshssarda@gmail.com)
  *
  */
-public abstract class AbstractController<V extends AbstractView<?>> implements EventBusListener {
+public abstract class AbstractController implements EventBusListener {
 
     protected abstract void preViewLoad();
 }

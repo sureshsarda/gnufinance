@@ -5,6 +5,6 @@ public class TagBean {
 	String name;
 	
 	//every tag has many transactions
-	TransactionBean[] transactions;
+	TransactionBean[] transactions;	
 	
 }

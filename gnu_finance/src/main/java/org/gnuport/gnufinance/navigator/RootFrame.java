@@ -1,30 +1,53 @@
-package org.gnuport.gnufinance.modules.dashboard.views;
+package org.gnuport.gnufinance.navigator;
 
 import java.awt.Container;
 
 import javax.swing.JFrame;
+
+import org.gnuport.gnufinance.modules.transaction.views.LedgerView;
 
 /**
  * 
  * @author Suresh Sarda
  *
  */
-public class RootFrame extends JFrame {
+public class RootFrame  {
+    
+    protected JFrame root;
+    private Navigator navigator;
+    
     public RootFrame() {
+    
+        /*Initialize a new root layout*/
+        root = new JFrame();
+        root.setTitle("GNU Finance");
+        root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        root.setSize(640, 480);
+        root.setVisible(true);
         
-        this.setTitle("GNU Finance");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(640, 480);
-        this.setVisible(true);
+        /*Initialize the navigator*/
+        navigator = new Navigator(this);
+        
+        /*Navigate to first view*/
+        
+        this.getNavigator().navigate(new LedgerView());
+//        GnuFinance.getGlobalEventBus().publish(this, new NewTransactionEvent());
     }
     
     private void buildLayout() {
         
     }
     
-    public void setContentPane(Container contentPane) {
-        this.setContentPane(contentPane);
+    protected void setContentPane(Container contentPane) {
+        root.setContentPane(contentPane);
     }
     
+    protected JFrame getRoot() {
+        return this.root;
+    }
+    
+    public Navigator getNavigator() {
+        return this.navigator;
+    }
     
 }
