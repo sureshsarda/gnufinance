@@ -15,4 +15,7 @@ package org.gnuport.gnufinance.common;
  */
 public abstract class AbstractController<VType extends AbstractView<?>> implements EventBusListener {
 
+    protected VType getView(Object sender) {
+        return (VType) sender;
+    }
 }

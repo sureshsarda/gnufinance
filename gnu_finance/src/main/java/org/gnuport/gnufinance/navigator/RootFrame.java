@@ -28,12 +28,11 @@ public class RootFrame  {
         
         /*Initialize the navigator*/
         navigator = new Navigator(this);
+//        navigator.register(LedgerView.class.getName(), LedgerController.class.getName());
+        navigator.register(new LedgerView(new LedgerController()));
         
         /*Navigate to first view*/
-        LedgerView ledger = new LedgerView(LedgerController.getInstance());
-        
-        this.getNavigator().navigate(ledger);
-//        GnuFinance.getGlobalEventBus().publish(this, new NewTransactionEvent());
+        this.getNavigator().navigate(LedgerView.class.getName());
     }
     
     private void buildLayout() {

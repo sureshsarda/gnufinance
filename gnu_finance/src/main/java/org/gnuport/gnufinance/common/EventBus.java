@@ -34,8 +34,8 @@ public class EventBus {
                 String methodName = null;
                 try {
                     methodName = getMethodName(event);
-                    method = listner.getClass().getMethod(methodName, event.getClass());
-                    method.invoke(listner, event);
+                    method = listner.getClass().getMethod(methodName, sender.getClass(), event.getClass());
+                    method.invoke(listner, sender, event);
                 } catch (NoSuchMethodException | InvocationTargetException | SecurityException | IllegalAccessException e) {
                     logger.info("Exception while calling method of subscriber");
                     logger.debug(e.getClass().getSimpleName());
@@ -47,7 +47,7 @@ public class EventBus {
         }
     }
 
-    public <T> void subscribe(EventBusListener listner, Class<T>  c) {
+    public <T> void subscribe(EventBusListener listner, Class<T> c) {
         String className = c.getName();
         if (subscribers.containsKey(className)) {
             subscribers.get(className).add(listner);

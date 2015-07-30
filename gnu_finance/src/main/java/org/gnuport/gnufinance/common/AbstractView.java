@@ -21,13 +21,13 @@ public abstract class AbstractView<CType extends AbstractController<?>> extends 
         this.setBackground(Color.WHITE);
     }
 
-    
     protected void publishEvent(Event e) {
+        
         GnuFinance.getInstance().getGlobalEventBus().publish(this, e);
         
         try {
-            Method m = controller.getClass().getMethod("on" + e.getClass().getSimpleName(), e.getClass());
-            m.invoke(controller, e);
+            Method m = controller.getClass().getMethod("on" + e.getClass().getSimpleName(), Object.class ,e.getClass());
+            m.invoke(controller, this, e);
         } catch (NoSuchMethodException e1) {
             e1.printStackTrace();
         } catch (SecurityException e1) {
@@ -38,6 +38,4 @@ public abstract class AbstractView<CType extends AbstractController<?>> extends 
             e1.printStackTrace();
         }
     }
-
-
 }
